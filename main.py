@@ -56,9 +56,11 @@ for inf in informativeness:
                                random_state = 0)
     if inf == 2:
         X = shuffle(X, random_state = 0) # shuffle to create 0 informative features
-    Xtrain, Xtest, ytrain, ytest = train_test_split(X, y, test_size = 0.25, random_state = 0)
-    
+
     for rs in random_states:
+
+        # train-test-split with respective random state
+        Xtrain, Xtest, ytrain, ytest = train_test_split(X, y, test_size = 0.25, random_state = rs)
         
         # model and fitting
         m = LogisticRegression(penalty = 'elasticnet', 
