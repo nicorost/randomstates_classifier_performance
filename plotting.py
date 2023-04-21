@@ -20,6 +20,7 @@ for file in res_files:
     res.append(df)
 res = pd.concat(res).sort_values(['informativeness', 'random_state'])
 res['informativeness'] = res['informativeness'].replace({2:0})
+res.to_csv('classification_results_bac.csv', index = False)
 
 
 # ------------------------------ Plot BACs ------------------------------------
