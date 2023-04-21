@@ -6,13 +6,19 @@
 
 
 # ------------------------------- Packages ------------------------------------
+import glob
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
 
 # ---------------------------- Load Data --------------------------------------
-res = pd.read_csv('classification_results_bac.csv')
+res_files = glob.glob('*bac_*.csv')
+res = []
+for file in res_files:
+    df = pd.read_csv(file)
+    res.append(df)
+res = pd.concat(res).sort_values(['informativeness', 'random_state'])
 res['informativeness'] = res['informativeness'].replace({2:0})
 
 
